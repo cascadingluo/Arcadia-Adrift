@@ -4,6 +4,7 @@ from scenes.map import MapScene
 class StartScene:
     
     def __init__(self):
+        
         self.font = pygame.font.SysFont("Comic Sans MS", 60)
         self.button_rect = pygame.Rect(540, 475, 200, 80) #posistion of the start button, the size
         self.title_font = pygame.font.SysFont("Comic Sana MS", 150) #create the title
