@@ -20,8 +20,8 @@ class MapScene:
         text = self.font.render("map screen", True, (0, 0, 0))
         screen.blit(text, (400, 300))
 
-        pygame.draw.rect(screen, (230, 230, 230), self.button_rect, border_radius=20) #draws the start button
-        start = self.font.render("log", True, (0, 0, 0)) #draws a text image that says start
+        pygame.draw.rect(screen, (230, 230, 230), self.button_rect, border_radius=20) #draws the log button
+        start = self.font.render("log", True, (0, 0, 0)) #draws a text image that says log
         text_rect = start.get_rect(center=(screen.get_width() // 2, (screen.get_height() // 2) + 110))
         screen.blit(start, text_rect)
 
