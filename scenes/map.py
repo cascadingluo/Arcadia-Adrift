@@ -75,7 +75,7 @@ class MapScene:
     def render(self, screen):
         screen.blit(self.image, (0,0))
         screen.blit(self.player, (self.player_pos[0], self.player_pos[1]))
-        pygame.draw.rect(screen, (230, 230, 230), self.button_rect, border_radius=20) #draws the log button
+        pygame.draw.rect(screen, (230, 230, 230), self.log_rect, border_radius=20) #draws the log button
         start = self.font.render("log", True, (0, 0, 0)) #draws a text image that says log
         text_rect = start.get_rect(center=(screen.get_width() // 2, (screen.get_height() // 2) + 110))
         screen.blit(start, text_rect)
