@@ -1,13 +1,15 @@
 import pygame
 from scenes.log import Log
-from scenes.mamaBear import mamaBearScene
+from scenes.mamabear import mamaBearScene
+# from scenes.babybear import babyBearScene
 
 class MapScene:
-    def __init__(self):
+    def __init__(self, player_pos=None):
+        self.player_pos = player_pos if player_pos else [600, 720] #perserves the position of the boat from scene to scene
         self.notif_font = pygame.font.SysFont("Arial", 14)
         self.font = pygame.font.SysFont("Arial", 40)
         self.map_font = pygame.font.SysFont("Arial", 60)
-        self.player_pos = [600, 720]
+        # self.player_pos = [600, 720]
         self.speed = 5
         self.image = pygame.transform.scale(pygame.image.load(r"assets\images\oceanbg.png").convert(), (1280, 800))
         self.player = pygame.image.load(r"assets\images\boat.jpg").convert_alpha()
@@ -36,11 +38,14 @@ class MapScene:
         self.interact_rect = pygame.Rect(700, 0, 300, 300)
 
     def handle_event(self, event):
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN and self.interact: #if enter is pressed && while in range
+                return mamaBearScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN: #check for click
             if self.interact_rect.collidepoint(event.pos) and self.interact: #if the click is on (!) && while in range
-                return BearScene()
+                return mamaBearScene(self.player_pos)
             elif self.log_rect.collidepoint(event.pos): #if the click is inside the button
-                return Log()
+                return Log(self.player_pos)
 
     def is_collision(self, p_rect):
         for border in self.border_list:
@@ -80,5 +85,5 @@ class MapScene:
         text_rect = start.get_rect(center=(screen.get_width() // 2, (screen.get_height() // 2) + 110))
         screen.blit(start, text_rect)
         if self.interact: 
-            text = self.notif_font.render("Click (!) to interact", True, (0, 0, 0))
+            text = self.notif_font.render("Click (!) or press 'enter' to interact", True, (0, 0, 0))
             screen.blit(text, (1000, 750))
