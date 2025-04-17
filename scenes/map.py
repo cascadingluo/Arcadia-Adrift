@@ -1,6 +1,6 @@
 import pygame
 from scenes.log import Log
-from scenes.bear import BearScene
+from scenes.mamaBear import mamaBearScene
 
 class MapScene:
     def __init__(self):
