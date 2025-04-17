@@ -9,8 +9,8 @@ class MapScene:
         self.map_font = pygame.font.SysFont("Arial", 60)
         self.player_pos = [600, 720]
         self.speed = 5
-        self.image = pygame.transform.scale(pygame.image.load(r"assets\images\oceanbg.png").convert(), (1280, 800))
-        self.player = pygame.image.load(r"assets\images\boat.jpg").convert_alpha()
+        self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
+        self.player = pygame.image.load(r"assets/images/boat.jpg").convert_alpha()
         self.player = pygame.transform.scale(self.player, (20, 60))
         self.interact = False
         self.log_rect = pygame.Rect(540, 475, 200, 80) #button for the log
