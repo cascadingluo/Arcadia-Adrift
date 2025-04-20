@@ -1,4 +1,5 @@
 import pygame
+from scenes.quiz import QuizScene
 
 class mamaBearScene:
     def __init__(self, player_pos):
@@ -26,8 +27,8 @@ class mamaBearScene:
                 if self.dialogue_index < len(self.dialogue) - 1:
                     self.dialogue_index += 1
                 else:
-                    from scenes.quiz import Trivia
-                    return Trivia(self.player_pos)
+                    # from scenes.quiz import Quiz
+                    return QuizScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button_rect.collidepoint(event.pos):
                 from scenes.map import MapScene
@@ -36,8 +37,8 @@ class mamaBearScene:
                 if self.dialogue_index < len(self.dialogue) - 1:
                     self.dialogue_index += 1
                 else:
-                    from scenes.quiz import Trivia
-                    return Trivia(self.player_pos)  # just return to the map after the dialgoue ends
+                    # from scenes.quiz import Quiz
+                    return QuizScene(self.player_pos)  # just return to the map after the dialgoue ends
 
     def update(self): #runs every frame, will update accrodingly 
         pass
