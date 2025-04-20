@@ -5,6 +5,7 @@ class babyBearScene:
         self.player_pos = player_pos
         self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
         self.font = pygame.font.SysFont("Comic Sans MS", 25)
+        self.inst_font = pygame.font.SysFont("Comic Sans MS", 20)
         self.button_rect = pygame.Rect(540, 400, 200, 80) #posistion and size of the map button
         self.character_name = "baby bear"
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
@@ -12,7 +13,8 @@ class babyBearScene:
         self.dialogue = [
             "Hello… can you help me please…?",
             "I am separated from my mother because of the ice caps breaking…",
-            "she is over there… she was hunting before for food but now she can't get back to me…",
+            "she is over there… she was hunting before for food...",
+            "but now she can't get back to me…",
             "daddy died a few days ago… she's all I have… please help us!"
         ]
         self.dialogue_index = 0

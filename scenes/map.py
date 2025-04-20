@@ -2,12 +2,13 @@ import pygame
 from scenes import global_data
 from scenes.log import Log
 from scenes.mamabear import mamaBearScene
-# from scenes.babybear import babyBearScene
+from scenes.babybear import babyBearScene
 
 class MapScene:
     def __init__(self, player_pos=None):
         self.player_pos = player_pos if player_pos else [600, 720] #perserves the position of the boat from scene to scene
         self.notif_font = pygame.font.SysFont("Arial", 14)
+        self.notif_font.set_bold(True)
         self.font = pygame.font.SysFont("Arial", 40)
         self.map_font = pygame.font.SysFont("Arial", 60)
         # self.player_pos = [600, 720] commented this out
@@ -16,6 +17,7 @@ class MapScene:
         self.player = pygame.image.load(r"assets/images/boat.jpg").convert_alpha()
         self.player = pygame.transform.scale(self.player, (20, 60))
         self.interact = False
+        self.baby_interact = False
         self.log_rect = pygame.Rect(540, 475, 200, 80) #button for the log
         # right border
         self.b_rect1 = pygame.Rect(1200, 330, 380, 500)
@@ -37,6 +39,7 @@ class MapScene:
                             self.b_rect_left1, self.b_rect_left2, self.b_rect_left3, self.b_rect_east, self.b_rect_bottom]
         #interaction
         self.interact_rect = pygame.Rect(700, 0, 300, 300)
+        self.baby_interact_rect = pygame.Rect(150, 300, 300, 300)
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
@@ -51,6 +54,9 @@ class MapScene:
                     return mamaBearScene(self.player_pos)
                 else:
                     print("Trivia already completed!")
+            elif self.baby_interact_rect.collidepoint(event.pos) and self.baby_interact:
+                if not global_data.trivia_completed: 
+                    return babyBearScene(self.player_pos)
             elif self.log_rect.collidepoint(event.pos): #if the click is inside the button
                 return Log(self.player_pos)
 
@@ -85,6 +91,11 @@ class MapScene:
         else:
             self.interact = False
 
+        if p_rect.colliderect(self.baby_interact_rect):
+            self.baby_interact = True
+        else:
+            self.baby_interact = False
+
     def render(self, screen):
         screen.blit(self.image, (0,0))
         screen.blit(self.player, (self.player_pos[0], self.player_pos[1]))
@@ -95,8 +106,11 @@ class MapScene:
         screen.blit(start, text_rect)
         
         if self.interact: 
-            text = self.notif_font.render("Click (!) to interact", True, (0, 0, 0))
-            screen.blit(text, (1000, 750))
+            text = self.notif_font.render("Click (!) to interact", True, (59, 101, 255))
+            screen.blit(text, (820, 100))
+        elif self.baby_interact:
+            text = self.notif_font.render("Click (!) to interact", True, (59, 101, 255))
+            screen.blit(text, (230, 450))
         elif self.interact and global_data.trivia_completed:
             notif = self.notif_font.render("You've completed the trivia challenge!", True, (0, 0, 0))
             screen.blit(notif, (900, 750))
