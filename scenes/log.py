@@ -1,7 +1,8 @@
 import pygame
 
 class Log:
-    def __init__(self):
+    def __init__(self, player_pos):
+        self.player_pos = player_pos  #player_pos was added
         self.font = pygame.font.SysFont("Comic Sans MS", 60)
         self.button_rect = pygame.Rect(540, 540, 200, 80)
 
@@ -9,7 +10,7 @@ class Log:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button_rect.collidepoint(event.pos):
                 from scenes.map import MapScene
-                return MapScene()  # just return to the map
+                return MapScene(self.player_pos)  # added the self.player_pos
 
     def update(self):
         pass
