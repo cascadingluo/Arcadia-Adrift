@@ -4,6 +4,7 @@ from scenes import global_data
 
 class QuizScene:
     def __init__(self, player_pos):
+        self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
         self.player_pos = player_pos
         all_questions = [
         {
@@ -162,7 +163,7 @@ class QuizScene:
 
 
     def render(self, screen):
-        screen.fill((255, 255, 255))
+        screen.blit(self.image, (0,0))
 
         if self.finished:
             text = self.title_font.render("Thanks for playing Arctic Trivia!", True, (0, 0, 0))
