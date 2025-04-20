@@ -1,10 +1,9 @@
 import pygame
 import random
 from scenes import global_data
-from scenes.bear import BearScene
 
 class QuizScene:
-    def __init__(self):
+    def __init__(self, player_pos):
         all_questions = [
         {
             "question": "What is the primary impact of melting sea ice on Arctic animals like polar bears and walruses?",
@@ -155,7 +154,8 @@ class QuizScene:
                 if self.current_question >= len(self.questions):
                     if global_data.correct_answers_total >= 3:
                         global_data.trivia_completed = True
-                    return BearScene()
+                    from scenes.map import MapScene
+                    return MapScene()
 
         return None
 
