@@ -1,6 +1,9 @@
 import pygame
+from scenes import global_data
 from scenes.log import Log
 from scenes.bear import BearScene
+from scenes.quiz import QuizScene
+
 
 class MapScene:
     def __init__(self):
@@ -38,7 +41,10 @@ class MapScene:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN: #check for click
             if self.interact_rect.collidepoint(event.pos) and self.interact: #if the click is on (!) && while in range
-                return BearScene()
+                if not global_data.trivia_completed:
+                    return QuizScene()
+                else:
+                    print("Trivia already completed!")
             elif self.log_rect.collidepoint(event.pos): #if the click is inside the button
                 return Log()
 
@@ -75,10 +81,15 @@ class MapScene:
     def render(self, screen):
         screen.blit(self.image, (0,0))
         screen.blit(self.player, (self.player_pos[0], self.player_pos[1]))
+        
         pygame.draw.rect(screen, (230, 230, 230), self.log_rect, border_radius=20) #draws the log button
         start = self.font.render("log", True, (0, 0, 0)) #draws a text image that says log
         text_rect = start.get_rect(center=(screen.get_width() // 2, (screen.get_height() // 2) + 110))
         screen.blit(start, text_rect)
+        
         if self.interact: 
             text = self.notif_font.render("Click (!) to interact", True, (0, 0, 0))
             screen.blit(text, (1000, 750))
+        elif self.interact and global_data.trivia_completed:
+            notif = self.notif_font.render("You've completed the trivia challenge!", True, (0, 0, 0))
+            screen.blit(notif, (900, 750))

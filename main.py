@@ -25,7 +25,10 @@ while running: #start runnign the game
         if next_scene:
             current_scene = next_scene
 
-    current_scene.update() #updates the game state
+    result = current_scene.update()
+    if result:
+        current_scene = result
+
     current_scene.render(screen) #render the current screen 
 
     pygame.display.flip() #updates the screen
