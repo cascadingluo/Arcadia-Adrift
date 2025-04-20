@@ -5,6 +5,7 @@ class mamaBearScene:
         self.player_pos = player_pos
         self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
         self.font = pygame.font.SysFont("Comic Sans MS", 25)
+        self.inst_font = pygame.font.SysFont("Comic Sans MS", 20)
         self.button_rect = pygame.Rect(540, 400, 200, 80) #posistion and size of the map button
         self.character_name = "mama bear"
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
@@ -58,3 +59,7 @@ class mamaBearScene:
         screen.blit(name_surface, (self.dialogue_box.x + 20, self.dialogue_box.y + 10))
         text_surface = self.font.render(self.dialogue[self.dialogue_index], True, (0, 0, 0))
         screen.blit(text_surface, (self.dialogue_box.x + 20, self.dialogue_box.y + 60))
+
+        #rendering the instructions 
+        text = self.inst_font.render("click anywhere or press enter to continue the dialogue", True, (0, 0, 0))
+        screen.blit(text, (735, 725))
