@@ -11,11 +11,11 @@ class babyBearScene:
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)
         self.dialogue = [
-            "Hello… can you help me please…?",
-            "I am separated from my mother because of the ice caps breaking…",
+            "hello… can you help me please…?",
+            "i am separated from my mother because of the ice caps breaking…",
             "she is over there… she was hunting before for food...",
             "but now she can't get back to me…",
-            "daddy died a few days ago… she's all I have… please help us!"
+            "daddy died a few days ago… she's all i have… please help us!"
         ]
         self.dialogue_index = 0
 
@@ -25,8 +25,8 @@ class babyBearScene:
                 if self.dialogue_index < len(self.dialogue) - 1:
                     self.dialogue_index += 1
                 else:
-                    from scenes.quiz import Trivia
-                    return Trivia(self.player_pos)
+                    from scenes.map import MapScene
+                    return MapScene(self.player_pos)  # just return to the map
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button_rect.collidepoint(event.pos):
                 from scenes.map import MapScene

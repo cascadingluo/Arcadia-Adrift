@@ -1,5 +1,4 @@
 import pygame
-from scenes.quiz import QuizScene
 
 class mamaBearScene:
     def __init__(self, player_pos):
@@ -27,7 +26,7 @@ class mamaBearScene:
                 if self.dialogue_index < len(self.dialogue) - 1:
                     self.dialogue_index += 1
                 else:
-                    # from scenes.quiz import Quiz
+                    from scenes.quiz import QuizScene
                     return QuizScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button_rect.collidepoint(event.pos):
