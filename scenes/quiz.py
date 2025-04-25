@@ -4,7 +4,7 @@ from scenes import global_data
 
 class QuizScene:
     def __init__(self, player_pos):
-        self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
+        self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg-noins.png").convert(), (1280, 800))
         self.player_pos = player_pos
         all_questions = [
         {
@@ -156,6 +156,11 @@ class QuizScene:
                 if self.current_question >= len(self.questions):
                     if global_data.correct_answers_total >= 3:
                         global_data.trivia_completed = True
+                        from scenes.success import successful
+                        return successful(self.player_pos)
+                    else:
+                        from scenes.unsuccess import unsuccessful
+                        return unsuccessful(self.player_pos)
                     from scenes.map import MapScene
                     return MapScene(self.player_pos)
 
