@@ -1,21 +1,24 @@
 import pygame
 
-class babyBearScene:
+class successful:
     def __init__(self, player_pos):
         self.player_pos = player_pos
-        self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
+        self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg-complete.png").convert(), (1280, 800))
         self.font = pygame.font.SysFont("Comic Sans MS", 25)
         self.inst_font = pygame.font.SysFont("Comic Sans MS", 20)
         self.button_rect = pygame.Rect(1050, 30, 200, 80) #posistion and size of the map button
-        self.character_name = "baby bear"
+        self.character_name = "mama bear"
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)
         self.dialogue = [
-            "hello… can you help me please…?",
-            "i am separated from my mother because of the ice caps breaking…",
-            "she is over there… she was hunting before for food...",
-            "but now she can't get back to me…",
-            "daddy died a few days ago… she's all i have… please help us!"
+            "oh! how magical!",
+            "our land has been healed!",
+            "my child! im so glad you're okay!",
+            "thank you so much...",
+            "for healing our land, and reuniting my family...",
+            "we will never forget you, kind soul.",
+            "please set forth to the other lands...",
+            "your journey is far from over..."
         ]
         self.dialogue_index = 0
 
@@ -26,7 +29,7 @@ class babyBearScene:
                     self.dialogue_index += 1
                 else:
                     from scenes.map import MapScene
-                    return MapScene(self.player_pos)  # just return to the map
+                    return MapScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN:
             if self.button_rect.collidepoint(event.pos):
                 from scenes.map import MapScene
@@ -36,7 +39,7 @@ class babyBearScene:
                     self.dialogue_index += 1
                 else:
                     from scenes.map import MapScene
-                    return MapScene(self.player_pos)  # just return to the map
+                    return MapScene(self.player_pos)
 
     def update(self): #runs every frame, will update accrodingly 
         pass

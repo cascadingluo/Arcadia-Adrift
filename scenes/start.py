@@ -22,7 +22,7 @@ class StartScene:
 
         pygame.draw.rect(screen, (230, 230, 230), self.button_rect, border_radius=20) #draws the start button
         start = self.font.render("Start", True, (0, 0, 0)) #draws a text image that says start
-        text_rect = start.get_rect(center=(screen.get_width() // 2, (screen.get_height() // 2) + 110))
+        text_rect = start.get_rect(center=self.button_rect.center)
         screen.blit(start, text_rect)
 
         title_text = self.title_font.render("Arcadia Adrift", True, (0, 0, 0))

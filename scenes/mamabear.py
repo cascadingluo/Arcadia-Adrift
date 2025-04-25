@@ -6,7 +6,7 @@ class mamaBearScene:
         self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
         self.font = pygame.font.SysFont("Comic Sans MS", 25)
         self.inst_font = pygame.font.SysFont("Comic Sans MS", 20)
-        self.button_rect = pygame.Rect(540, 400, 200, 80) #posistion and size of the map button
+        self.button_rect = pygame.Rect(1050, 30, 200, 80) #posistion and size of the map button
         self.character_name = "mama bear"
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)

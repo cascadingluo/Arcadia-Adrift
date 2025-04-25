@@ -4,7 +4,7 @@ class Log:
     def __init__(self, player_pos):
         self.player_pos = player_pos  #player_pos was added
         self.font = pygame.font.SysFont("Comic Sans MS", 60)
-        self.button_rect = pygame.Rect(540, 540, 200, 80)
+        self.button_rect = pygame.Rect(1050, 30, 200, 80)
 
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
