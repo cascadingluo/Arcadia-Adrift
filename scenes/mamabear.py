@@ -36,7 +36,7 @@ class mamaBearScene:
                 if self.dialogue_index < len(self.dialogue) - 1:
                     self.dialogue_index += 1
                 else:
-                    # from scenes.quiz import Quiz
+                    from scenes.quiz import QuizScene
                     return QuizScene(self.player_pos)  # just return to the map after the dialgoue ends
 
     def update(self): #runs every frame, will update accrodingly 
