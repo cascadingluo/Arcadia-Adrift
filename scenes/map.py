@@ -46,7 +46,7 @@ class MapScene:
             if event.key == pygame.K_RETURN and self.interact: #if enter is pressed && while in range
                 if not global_data.trivia_completed:
                     return mamaBearScene(self.player_pos)
-                else:
+                else: 
                     print("Trivia already completed!")
             elif event.key == pygame.K_RETURN and self.baby_interact: #if enter is pressed && while in range for the baby
                 if not global_data.trivia_completed:
