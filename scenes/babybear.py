@@ -11,11 +11,11 @@ class babyBearScene:
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)
         self.dialogue = [
-            "hello… can you help me please…?",
-            "i am separated from my mother because of the ice caps breaking…",
-            "she is over there… she was hunting before for food...",
-            "but now she can't get back to me…",
-            "daddy died a few days ago… she's all i have… please help us!"
+            "Hello… can you help me please…?",
+            "I am separated from my mother because of the ice caps breaking…",
+            "She is over there… she was hunting before for food...",
+            "But now she can't get back to me…",
+            "Daddy died a few days ago… she's all I have… please help us!"
         ]
         self.dialogue_index = 0
 
@@ -59,6 +59,9 @@ class babyBearScene:
         text_surface = self.font.render(self.dialogue[self.dialogue_index], True, (0, 0, 0))
         screen.blit(text_surface, (self.dialogue_box.x + 20, self.dialogue_box.y + 60))
 
+        #rendering portrait - baby bear
+        baby_portrait  = pygame.transform.scale(pygame.image.load(r"assets/images/baby-bear-portrait.png").convert(), (266, 355))
+        screen.blit(baby_portrait, (25, 400))
         #rendering the instructions 
         text = self.inst_font.render("click anywhere or press enter to continue the dialogue", True, (0, 0, 0))
         screen.blit(text, (735, 725))

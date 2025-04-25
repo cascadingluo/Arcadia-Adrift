@@ -18,7 +18,7 @@ class MapScene:
             self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg-complete.png").convert(), (1280, 800))
         else:
             self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg.png").convert(), (1280, 800))
-        self.player = pygame.image.load(r"assets/images/boat.jpg").convert_alpha()
+        self.player = pygame.image.load(r"assets/images/boat.png").convert_alpha()
         self.player = pygame.transform.scale(self.player, (20, 60))
         self.interact = False
         self.baby_interact = False
@@ -110,12 +110,12 @@ class MapScene:
         text_rect = start.get_rect(center=self.log_rect.center)
         screen.blit(start, text_rect)
         
-        if self.interact: 
+        if self.interact and not global_data.trivia_completed: 
             text = self.notif_font.render("Click (!) or press enter to interact", True, (59, 101, 255))
-            screen.blit(text, (820, 100))
+            screen.blit(text, (800, 100))
         elif self.baby_interact and not global_data.trivia_completed:
             text = self.notif_font.render("Click (!) or press enter to interact", True, (59, 101, 255))
-            screen.blit(text, (230, 450))
+            screen.blit(text, (210, 450))
         elif self.interact and global_data.trivia_completed:
-            notif = self.notif_font.render("You've completed the trivia challenge!", True, (0, 0, 0))
-            screen.blit(notif, (900, 750))
+            notif = self.notif_font.render("You've completed the trivia challenge!", True, (59, 101, 255))
+            screen.blit(notif, (800, 100))

@@ -11,14 +11,14 @@ class successful:
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)
         self.dialogue = [
-            "oh! how magical!",
-            "our land has been healed!",
-            "my child! im so glad you're okay!",
-            "thank you so much...",
-            "for healing our land, and reuniting my family...",
-            "we will never forget you, kind soul.",
-            "please set forth to the other lands...",
-            "your journey is far from over..."
+            "Oh! How magical!",
+            "Our land has been healed!",
+            "My child! I am so glad you're okay!",
+            "Thank you so much...",
+            "For healing our land, and reuniting my family...",
+            "We will never forget you, kind soul.",
+            "Please set forth to the other lands...",
+            "Your journey is far from over..."
         ]
         self.dialogue_index = 0
 
@@ -61,6 +61,10 @@ class successful:
         screen.blit(name_surface, (self.dialogue_box.x + 20, self.dialogue_box.y + 10))
         text_surface = self.font.render(self.dialogue[self.dialogue_index], True, (0, 0, 0))
         screen.blit(text_surface, (self.dialogue_box.x + 20, self.dialogue_box.y + 60))
+
+        #render mama bear portrait
+        mama_portrait  = pygame.transform.scale(pygame.image.load(r"assets/images/mama-bear-portrait.png").convert(), (266, 355))
+        screen.blit(mama_portrait, (25, 400))
 
         #rendering the instructions 
         text = self.inst_font.render("click anywhere or press enter to continue the dialogue", True, (0, 0, 0))

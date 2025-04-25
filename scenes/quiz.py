@@ -6,6 +6,7 @@ class QuizScene:
     def __init__(self, player_pos):
         self.image = pygame.transform.scale(pygame.image.load(r"assets/images/oceanbg-noins.png").convert(), (1280, 800))
         self.player_pos = player_pos
+        self.button_rect = pygame.Rect(1050, 30, 200, 80)
         all_questions = [
         {
             "question": "What is the primary impact of melting sea ice on Arctic animals like polar bears and walruses?",
@@ -113,8 +114,8 @@ class QuizScene:
 
         self.font = pygame.font.SysFont("Arial", 28)
         self.title_font = pygame.font.SysFont("Arial", 36)
-        self.correct_color = (0, 200, 0)
-        self.incorrect_color = (200, 0, 0)
+        self.correct_color = (167, 242, 217)
+        self.incorrect_color = (250, 162, 200)
         self.option_rects = []
 
     def handle_event(self, event):
@@ -124,6 +125,9 @@ class QuizScene:
                     if rect.collidepoint(event.pos):
                         self.selected = i
                         self.feedback_timer = pygame.time.get_ticks()
+            elif self.button_rect.collidepoint(event.pos):
+                from scenes.map import MapScene
+                return MapScene(self.player_pos)  # just return to the map
 
     def wrap_text(self, text, font, max_width):
         words = text.split(' ')
@@ -170,6 +174,12 @@ class QuizScene:
     def render(self, screen):
         screen.blit(self.image, (0,0))
 
+        #button to exit out of trivia 
+        pygame.draw.rect(screen, (230, 230, 230), self.button_rect, border_radius=20)
+        text = self.font.render("Back to Map", True, (0, 0, 0))
+        button_rect = text.get_rect(center=self.button_rect.center)
+        screen.blit(text, button_rect)
+
         if self.finished:
             text = self.title_font.render("Thanks for playing Arctic Trivia!", True, (0, 0, 0))
             screen.blit(text, text.get_rect(center=(640, 400)))
@@ -184,7 +194,7 @@ class QuizScene:
         self.option_rects = []
         for i, option in enumerate(q["options"]):
             rect = pygame.Rect(100, 150 + i * 80, 1080, 60)
-            color = (200, 200, 200)
+            color = (225, 239, 246)
             if self.selected is not None:
                 if i == q["answer"]:
                     color = self.correct_color

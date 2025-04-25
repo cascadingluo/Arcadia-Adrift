@@ -11,12 +11,12 @@ class mamaBearScene:
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)
         self.dialogue = [
-            "my child… my child and i was separated because of the ice caps… ",
-            "its been getting warmer due to the temperatures these couple of years,",
-            "my husband had died a few days ago after being seperated from us on a hunt.",
-            "could you help us?",
-            "to help us is easy… i found these riddles in a frozen cave a while back.",
-            "i believe by being able to solve them… everything will return to once it was…"
+            "My child… my child and I were separated because of the ice caps… ",
+            "They have been melting from the temperatures over the last few years…",
+            "My husband died a few days ago after being seperated from us on a hunt.",
+            "Could you help us?",
+            "To help us is easy… I found these riddles in a frozen cave a while back.",
+            "I believe by being able to solve them… everything will return to as it once was…"
         ]
         self.dialogue_index = 0
 
@@ -60,6 +60,10 @@ class mamaBearScene:
         text_surface = self.font.render(self.dialogue[self.dialogue_index], True, (0, 0, 0))
         screen.blit(text_surface, (self.dialogue_box.x + 20, self.dialogue_box.y + 60))
 
+        #render mama bear portrait
+        mama_portrait  = pygame.transform.scale(pygame.image.load(r"assets/images/mama-bear-portrait.png").convert(), (266, 355))
+        screen.blit(mama_portrait, (25, 400))
+        
         #rendering the instructions 
         text = self.inst_font.render("click anywhere or press enter to continue the dialogue", True, (0, 0, 0))
         screen.blit(text, (735, 725))

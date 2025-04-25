@@ -11,9 +11,9 @@ class unsuccessful:
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)
         self.dialogue = [
-            "oh... seems like something was incorrect...",
-            "let's try this again, please...",
-            "i hope my child is okay..."
+            "Oh... seems like something was incorrect...",
+            "Let's try this again, please...",
+            "I hope my child is okay..."
         ]
         self.dialogue_index = 0
 
@@ -57,6 +57,10 @@ class unsuccessful:
         text_surface = self.font.render(self.dialogue[self.dialogue_index], True, (0, 0, 0))
         screen.blit(text_surface, (self.dialogue_box.x + 20, self.dialogue_box.y + 60))
 
+        #render mama bear portrait
+        mama_portrait  = pygame.transform.scale(pygame.image.load(r"assets/images/mama-bear-portrait.png").convert(), (266, 355))
+        screen.blit(mama_portrait, (25, 400))
+        
         #rendering the instructions 
         text = self.inst_font.render("click anywhere or press enter to continue the dialogue", True, (0, 0, 0))
         screen.blit(text, (735, 725))
