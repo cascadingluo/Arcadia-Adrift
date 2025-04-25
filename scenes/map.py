@@ -48,6 +48,9 @@ class MapScene:
                     return mamaBearScene(self.player_pos)
                 else:
                     print("Trivia already completed!")
+            elif event.key == pygame.K_RETURN and self.baby_interact: #if enter is pressed && while in range for the baby
+                if not global_data.trivia_completed:
+                    return babyBearScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN: #check for click
             if self.interact_rect.collidepoint(event.pos) and self.interact: #if the click is on (!) && while in range
                 if not global_data.trivia_completed:
@@ -106,10 +109,10 @@ class MapScene:
         screen.blit(start, text_rect)
         
         if self.interact: 
-            text = self.notif_font.render("Click (!) to interact", True, (59, 101, 255))
+            text = self.notif_font.render("Click (!) or press enter to interact", True, (59, 101, 255))
             screen.blit(text, (820, 100))
         elif self.baby_interact:
-            text = self.notif_font.render("Click (!) to interact", True, (59, 101, 255))
+            text = self.notif_font.render("Click (!) or press enter to interact", True, (59, 101, 255))
             screen.blit(text, (230, 450))
         elif self.interact and global_data.trivia_completed:
             notif = self.notif_font.render("You've completed the trivia challenge!", True, (0, 0, 0))
