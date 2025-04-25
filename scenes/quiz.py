@@ -125,7 +125,7 @@ class QuizScene:
                     if rect.collidepoint(event.pos):
                         self.selected = i
                         self.feedback_timer = pygame.time.get_ticks()
-            elif self.button_rect.collidepoint(event.pos):
+            if self.button_rect.collidepoint(event.pos):
                 from scenes.map import MapScene
                 return MapScene(self.player_pos)  # just return to the map
 
