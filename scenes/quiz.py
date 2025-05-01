@@ -133,6 +133,7 @@ class QuizScene:
     def handle_event(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN and not self.finished:
             if self.selected is None and not self.waiting_for_explanation:
+                global_data.play_audio()
                 for i, rect in enumerate(self.option_rects):
                     if rect.collidepoint(event.pos):
                         self.selected = i
@@ -145,6 +146,7 @@ class QuizScene:
                             self.explanation_text = q["explanation"]
 
             if self.button_rect.collidepoint(event.pos):
+                global_data.play_audio()
                 from scenes.map import MapScene
                 return MapScene(self.player_pos)
 
@@ -238,5 +240,8 @@ class QuizScene:
                 screen.blit(explanation_bg, (50, y_offset))
                 screen.blit(explanation_surf, (60, y_offset + 5))
                 y_offset += 40
+        
+        juniper  = pygame.transform.scale(pygame.image.load(r"assets/images/juniper-portrait.png").convert(), (220, 295))
+        screen.blit(juniper, (1040, 480))
 
         pygame.display.flip()
