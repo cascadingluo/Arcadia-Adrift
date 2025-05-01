@@ -5,6 +5,7 @@ from scenes.map import MapScene
 pygame.init()
 #initalize a window/screen for display
 screen = pygame.display.set_mode((1280, 800)) #1280px by 800px
+pygame.mixer.Channel(0).play(pygame.mixer.Sound(r"assets/audio/arcadia.wav"), -1)
 #track the in game clock between frames
 clock = pygame.time.Clock()
 
@@ -30,7 +31,6 @@ while running: #start runnign the game
         current_scene = result
 
     current_scene.render(screen) #render the current screen 
-
     pygame.display.flip() #updates the screen
     clock.tick(60) #how many runs of the loop in a second, for now, lets do 60 FPS
 

@@ -48,22 +48,27 @@ class MapScene:
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN and self.interact: #if enter is pressed && while in range
+                global_data.play_audio()
                 if not global_data.trivia_completed:
                     return mamaBearScene(self.player_pos)
                 else: 
                     return successful(self.player_pos)
             elif event.key == pygame.K_RETURN and self.baby_interact and not global_data.trivia_completed: #if enter is pressed && while in range for the baby
+                global_data.play_audio()
                 return babyBearScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN: #check for click
             if self.interact_rect.collidepoint(event.pos) and self.interact: #if the click is on (!) && while in range
+                global_data.play_audio()
                 if not global_data.trivia_completed:
                     return mamaBearScene(self.player_pos)
                 else:
                     return successful(self.player_pos)
             elif self.baby_interact_rect.collidepoint(event.pos) and self.baby_interact and not global_data.trivia_completed: 
+                global_data.play_audio()
                 return babyBearScene(self.player_pos)
-            elif self.log_rect.collidepoint(event.pos): #if the click is inside the button
-                return Log(self.player_pos)
+            # elif self.log_rect.collidepoint(event.pos): #if the click is inside the button
+            #     self.play_audio()
+            #     return Log(self.player_pos)
 
 
     def is_collision(self, p_rect):
@@ -105,10 +110,10 @@ class MapScene:
         screen.blit(self.image, (0,0))
         screen.blit(self.player, (self.player_pos[0], self.player_pos[1]))
         
-        pygame.draw.rect(screen, (230, 230, 230), self.log_rect, border_radius=20) #draws the log button
-        start = self.font.render("log", True, (0, 0, 0)) #draws a text image that says log
-        text_rect = start.get_rect(center=self.log_rect.center)
-        screen.blit(start, text_rect)
+        # pygame.draw.rect(screen, (230, 230, 230), self.log_rect, border_radius=20) #draws the log button
+        # start = self.font.render("log", True, (0, 0, 0)) #draws a text image that says log
+        # text_rect = start.get_rect(center=self.log_rect.center)
+        # screen.blit(start, text_rect)
         
         if self.interact and not global_data.trivia_completed: 
             text = self.notif_font.render("Click (!) or press enter to interact", True, (59, 101, 255))

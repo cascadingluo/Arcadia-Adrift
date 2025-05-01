@@ -1,5 +1,5 @@
 import pygame
-
+from scenes import global_data
 class mamaBearScene:
     def __init__(self, player_pos):
         self.player_pos = player_pos
@@ -8,6 +8,7 @@ class mamaBearScene:
         self.inst_font = pygame.font.SysFont("Comic Sans MS", 20)
         self.button_rect = pygame.Rect(1050, 30, 200, 80) #posistion and size of the map button
         self.character_name = "mama bear"
+        self.haptic = pygame.mixer.music.load(r"assets/audio/haptic.wav")
         self.dialogue_box = pygame.Rect(300, 600, 950, 160)  
         self.name_font = pygame.font.SysFont("Comic Sans MS", 35)
         self.dialogue = [
@@ -23,12 +24,14 @@ class mamaBearScene:
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
+                global_data.play_audio()
                 if self.dialogue_index < len(self.dialogue) - 1:
                     self.dialogue_index += 1
                 else:
                     from scenes.quiz import QuizScene
                     return QuizScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN:
+            global_data.play_audio()
             if self.button_rect.collidepoint(event.pos):
                 from scenes.map import MapScene
                 return MapScene(self.player_pos)  # just return to the map

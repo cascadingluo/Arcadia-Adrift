@@ -1,4 +1,5 @@
 import pygame
+from scenes import global_data
 
 class successful:
     def __init__(self, player_pos):
@@ -25,12 +26,14 @@ class successful:
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
+                global_data.play_audio()
                 if self.dialogue_index < len(self.dialogue) - 1:
                     self.dialogue_index += 1
                 else:
                     from scenes.map import MapScene
                     return MapScene(self.player_pos)
         if event.type == pygame.MOUSEBUTTONDOWN:
+            global_data.play_audio()
             if self.button_rect.collidepoint(event.pos):
                 from scenes.map import MapScene
                 return MapScene(self.player_pos)  # just return to the map
